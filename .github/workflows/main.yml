@@ -18,10 +18,10 @@ jobs:
 
       - name: heroku-deploy
         env:
-          current_version_safe: ${${{ steps.package-version.outputs.current-version }}/./-}
+          current_version_safe: ${1.0.0/./-}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: "qa-flow-demo-custom-${current_version_safe}"
+          heroku_app_name: "qa-flow-demo-${current_version_safe}"
       - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-custom-${current_version_safe} --stage=staging
