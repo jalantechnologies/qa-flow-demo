@@ -18,7 +18,7 @@ jobs:
 
       - name: heroku-deploy
         env:
-          current_version_safe: ${{ steps.package-version.outputs.current-version/./- }}
+          current_version_safe: "${{ steps.package-version.outputs.current-version/./- }}"
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
