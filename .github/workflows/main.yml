@@ -16,12 +16,12 @@ jobs:
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
 
+      - run: echo "version=${1.0.0/./-}"
+
       - name: heroku-deploy
-        env:
-          VERSION: ${1.0.0/./-}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: "qa-flow-demo-${{ env.VERSION }}"
-      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-custom-${current_version_safe} --stage=staging
+          heroku_app_name: "qa-flow-demo-${{ env.version }}"
+      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-custom-${{ env.version }} --stage=staging
