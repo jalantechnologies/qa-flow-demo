@@ -1,7 +1,7 @@
 const http = require('http');
 
-const appConfigEnv = process.NODE_CONFIG_ENV || 'development';
-const appHttpPort = process.PORT || 8080;
+const appConfigEnv = process.env.NODE_CONFIG_ENV || 'development';
+const appHttpPort = process.env.PORT || 8080;
 
 const requestListener = function (req, res) {
   res.writeHead(200);
