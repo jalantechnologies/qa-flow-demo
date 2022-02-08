@@ -23,5 +23,5 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: "qa-flow-demo-$VERSION"
+          heroku_app_name: "qa-flow-demo-${{ env.VERSION }}"
       - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-custom-${current_version_safe} --stage=staging
