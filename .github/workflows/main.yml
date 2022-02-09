@@ -12,17 +12,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
-
-      - run: echo "HEROKU_APP_VERSION=$(${{ steps.package-version.outputs.current-version }}| sed -e 's/\./-/g')" >> $GITHUB_ENV
-
       - name: heroku-deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: "qa-flow-demo-${{ env.HEROKU_APP_VERSION }}"
-      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-custom-${{ env.HEROKU_APP_VERSION }} --stage=staging
-
+          heroku_app_name: "qa-flow-demo-release"
+      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging
