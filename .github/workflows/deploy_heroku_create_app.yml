@@ -3,6 +3,7 @@ name: deploy:heroku:create-app
 on:
   push:
     branches:
+      - 'feature/**'
       - 'release/**'
 
 jobs:
