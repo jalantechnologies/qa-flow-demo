@@ -22,4 +22,4 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "qa-flow-demo-release"
 
-      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging | return
+      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging || true
