@@ -1,0 +1,9 @@
+{
+  "name": "QA Flow Demo APP",
+  "env": {
+    "NODE_CONFIG_ENV": {
+      "description": "Node Configuration Environment",
+      "value": "staging"
+    }
+  }
+}
