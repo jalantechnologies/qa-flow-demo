@@ -1,12 +1,12 @@
-name: deploy:heroku
+name: deploy:heroku:delete-app
 
 on:
-  push:
+  delete:
     branches:
-      - 'feature/**'
+      - 'release/**'
 
 jobs:
-  build:
+  delete_app:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -17,5 +17,7 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: "qa-flow-demo-release"
-      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging
+          heroku_app_name: ""
+          justlogin: true
+
+      - run: heroku apps:destroy --app=qa-flow-demo-release

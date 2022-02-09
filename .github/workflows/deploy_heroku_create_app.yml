@@ -1,0 +1,24 @@
+name: deploy:heroku:create-app
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  create_app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: heroku-deploy
+        uses: akhileshns/heroku-deploy@v3.12.12
+        env:
+          HD_NODE_CONFIG_ENV: "release"
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: "qa-flow-demo-release"
+
+      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging
