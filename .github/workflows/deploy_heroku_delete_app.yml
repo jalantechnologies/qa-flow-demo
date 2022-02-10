@@ -1,12 +1,9 @@
 name: deploy:heroku:delete-app
 
 on:
-  push:
+  delete:
     branches:
-      - 'feature/**'
-#  delete:
-#    branches:
-#      - 'release/**'
+      - 'release/**'
 
 jobs:
   delete_app:
