@@ -29,4 +29,4 @@ jobs:
           heroku_app_name: ""
           justlogin: true
 
-      - run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release
+      - run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release || true
