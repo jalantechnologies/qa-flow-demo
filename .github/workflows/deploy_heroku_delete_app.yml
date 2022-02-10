@@ -12,6 +12,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: run build
+        run: |
+          echo "::set-env name=GITHUB_REF::${{ github.ref }}"
+          GITHUB_REF=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
+          echo "new GITHUB_REF is $GITHUB_REF"
+
       - name: heroku-deploy
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
