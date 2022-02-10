@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "GITHUB_REF=${{ github.ref }}" >> $GITHUB_ENV
           echo "GITHUB_REF is $GITHUB_REF"
-          echo "GITHUB_REF_SANTIZED=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")" >> $GITHUB_ENV
+          GITHUB_REF_SANTIZED=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
           echo "GITHUB_REF_SANTIZED is $GITHUB_REF_SANTIZED"
           echo "${{startsWith(env.GITHUB_REF_SANTIZED, 'feature' )}}"
 
