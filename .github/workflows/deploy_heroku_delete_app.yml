@@ -20,7 +20,7 @@ jobs:
           echo "GITHUB_REF=${{ github.ref }}" >> $GITHUB_ENV
           echo "GITHUB_REF=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")" >> $GITHUB_ENV 
           echo "new GITHUB_REF is $GITHUB_REF"
-          echo "${{ startsWith( $GITHUB_REF, 'feature' ) }}"
+          echo "${{startsWith($GITHUB_REF,'feature')}}"
 
       - name: heroku-deploy
         uses: akhileshns/heroku-deploy@v3.12.12
