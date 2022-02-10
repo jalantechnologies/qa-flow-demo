@@ -22,7 +22,7 @@ jobs:
           GITHUB_REF_SANTIZED=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
           echo "GITHUB_REF_SANTIZED is $GITHUB_REF_SANTIZED"
           echo "GITHUB_REF_SANTIZED=$GITHUB_REF_SANTIZED" >> $GITHUB_ENV
-          echo "${{startsWith(env.GITHUB_REF_SANTIZED, 'feature' )}}"
+          echo "${{startsWith(GITHUB_REF_SANTIZED, 'feature')}}"
 
       - name: heroku-deploy
         uses: akhileshns/heroku-deploy@v3.12.12
