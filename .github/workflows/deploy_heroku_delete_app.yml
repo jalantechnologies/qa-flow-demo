@@ -17,12 +17,7 @@ jobs:
 
       - name: run build
         run: |
-          echo "GITHUB_REF=${{ github.ref }}" >> $GITHUB_ENV
-          echo "GITHUB_REF is $GITHUB_REF"
-          GITHUB_REF_SANTIZED=$(echo $GITHUB_REF | sed -e "s#refs/heads/##g")
-          echo "GITHUB_REF_SANTIZED is $GITHUB_REF_SANTIZED"
-          echo "GITHUB_REF_SANTIZED=$GITHUB_REF_SANTIZED" >> $GITHUB_ENV
-          echo "${{startsWith(${GITHUB_REF_SANTIZED}, 'feature')}}"
+          echo "${{contains(github.ref, '/feature')}}"
 
       - name: heroku-deploy
         uses: akhileshns/heroku-deploy@v3.12.12
