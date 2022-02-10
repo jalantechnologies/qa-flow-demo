@@ -12,14 +12,10 @@ jobs:
   delete_app:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: run build
-        run: |
-          echo "${{contains(github.ref, '/feature')}}"
-
-      - name: heroku-deploy
+      - name: heroku-login
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -27,4 +23,6 @@ jobs:
           heroku_app_name: ""
           justlogin: true
 
-      - run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release || true
+      - name: heroku-delete-app
+        if: contains(github.ref, '/feature')
+        run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release || true

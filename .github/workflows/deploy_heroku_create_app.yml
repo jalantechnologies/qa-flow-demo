@@ -9,10 +9,10 @@ jobs:
   create_app:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: git-checkout
         uses: actions/checkout@v2
 
-      - name: heroku-deploy
+      - name: heroku-create-app
         uses: akhileshns/heroku-deploy@v3.12.12
         env:
           HD_NODE_CONFIG_ENV: "release"
@@ -21,4 +21,5 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: "qa-flow-demo-release"
 
-      - run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging || true
+      - name: heroku-add-to-pipeline
+        run: heroku pipelines:add qa-flow-demo --app=qa-flow-demo-release --stage=staging || true
