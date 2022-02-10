@@ -24,5 +24,5 @@ jobs:
           justlogin: true
 
       - name: heroku-delete-app
-        if: contains(github.ref, '/feature')
+        if: contains(github.ref, '/release')
         run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release || true
