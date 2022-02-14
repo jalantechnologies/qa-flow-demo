@@ -1,0 +1,25 @@
+name: deploy:heroku:delete-app
+
+on:
+  delete:
+    branches:
+      - 'release/**'
+
+jobs:
+  delete_app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v2
+
+      - name: heroku-login
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: ""
+          justlogin: true
+
+      - name: heroku-delete-app
+        if: contains(github.event.ref, 'release/')
+        run: heroku apps:destroy --app=qa-flow-demo-release --confirm qa-flow-demo-release || true
