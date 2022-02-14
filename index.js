@@ -5,7 +5,7 @@ const appHttpPort = process.env.PORT || 8080;
 
 const requestListener = function (req, res) {
   res.writeHead(200);
-  res.end(`Hi there! - ${appConfigEnv}`);
+  res.end(`My new message comes here! - ${appConfigEnv}`);
 }
 
 const server = http.createServer(requestListener);
